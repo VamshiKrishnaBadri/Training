@@ -2,7 +2,7 @@
 $organization = "wwtraining"    # Azure DevOps organization name
 $project = "Demo"              # Azure DevOps project name
 $pipelineId = "1"            # ID of your pipeline
-$pat = "d3yf6nlv3v2f2ojdcxvzboeaw2jsahjk3x2ypa54kj3ku4ihzqfa"         # Azure DevOps Personal Access Token (PAT)
+$pat = "xx"         # Azure DevOps Personal Access Token (PAT)
 
 # Base64-encode the PAT for the authorization header
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($pat)"))
