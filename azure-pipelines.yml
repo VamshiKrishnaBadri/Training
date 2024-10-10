@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python -m venv venv
+    . venv/bin/activate
+    pip install -r requirements.txt
+    python -m unittest discover
+  displayName: 'Install Dependencies and Run Tests'
+
+- powershell: |
+    # Path to your PowerShell script
+    $scriptPath = "$(Build.SourcesDirectory)/track_build_create-bug.ps1"
+    # Execute the PowerShell script
+    . $scriptPath
+  displayName: 'Run Bug Reporting Script'
+  env:
+    # Pass any required environment variables here, e.g., PAT, organization, project
+    PAT: $(YourPAT)
+    ORGANIZATION: 'wwtraining'
+    PROJECT: 'Demo'
+    PIPELINE_ID: '1'
